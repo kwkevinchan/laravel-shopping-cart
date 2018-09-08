@@ -23,6 +23,13 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($product_class as $p_c)
+                <tr>
+                  <td>{{ $p_c->name }}</td>
+                  <td>{{ $p_c->detail }}</td>
+                  <td><a  class="btn btn-primary" role="button" href="{{ route('productClass.edit', $p_c->id) }}">修改</a></td>
+                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

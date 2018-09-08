@@ -25,6 +25,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="basicDropMenu">
           <a class="dropdown-item" href="{{ route('productClass.index') }}">商品類型</a>
+          <a class="dropdown-item" href="{{ route('user.index') }}">使用者管理</a>
         </div>
       </li>
 
@@ -64,12 +65,8 @@
           <span class="caret">歡迎</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown">
-        <h5 class="dropdown-header">管理員功能</h5>
-        <a class="dropdown-item" href="">使用者清單(管理員)</a>
-        <a class="dropdown-item" href="">開新使用者(管理員)</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="">個人資料修改</a>
-        <a class="dropdown-item" href="">登出</a>
+          <a class="dropdown-item" href="">個人資料修改</a>
+          <a class="dropdown-item" href="">登出</a>
         </div>
       </li>
 

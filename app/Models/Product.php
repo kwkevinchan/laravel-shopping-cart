@@ -8,4 +8,7 @@ use App\Traits\Uuids;
 class Product extends Model
 {
     use Uuids;
+
+    public $incrementing = false;
+
 }

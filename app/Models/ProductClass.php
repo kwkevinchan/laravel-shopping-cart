@@ -9,6 +9,9 @@ class ProductClass extends Model
 {
     use Uuids;
 
+    public $incrementing = false;
+
+
     protected $fillable = [
         'name', 'detail'
     ];

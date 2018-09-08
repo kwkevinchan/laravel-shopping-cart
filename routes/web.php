@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('productClass','ProductClassController');
+Route::resource('productClass','ProductClassController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+Route::resource('product','ProductController');
+Route::resource('user','UserController');

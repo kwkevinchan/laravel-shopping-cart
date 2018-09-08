@@ -9,4 +9,6 @@ class Order extends Model
 {
     use Uuids;
 
+    public $incrementing = false;
+
 }
