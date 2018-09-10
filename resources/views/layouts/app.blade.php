@@ -14,6 +14,7 @@
   </button>
 
   <div class="collapse navbar-collapse navbarNav d-flex">
+  @auth
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="/">首頁</a>
@@ -35,7 +36,7 @@
           店家
         </a>
         <div class="dropdown-menu" aria-labelledby="basicDropMenu">
-          <a class="dropdown-item" href="">商品</a>
+          <a class="dropdown-item" href="{{ route('product.index') }}">商品</a>
           <a class="dropdown-item" href="">出貨單</a>
         </div>
       </li>
@@ -56,23 +57,27 @@
         </div>
       </li>
     </ul>
+  @endauth
   </div>
 
   <div class="flex-row-reverse collapse navbar-collapse navbarNav">
     <ul class="navbar-nav">
+    @auth
       <li class="nav-item dropdown dropleft">
         <a class="nav-link dropdown-toggle mr-sm-2" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="caret">歡迎</span>
+          <span class="caret">歡迎，{{ Auth::user()->name }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="">個人資料修改</a>
-          <a class="dropdown-item" href="">登出</a>
+          <a class="dropdown-item" href="{{ route('logout') }}">登出</a>
         </div>
       </li>
-
+    @endauth
+    @guest
       <li class="nav-item">
         <a class="nav-link" href="/login">登入</a>
       </li>
+    @endguest
     </ul>
   </div>
 </nav>

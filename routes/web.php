@@ -11,12 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('login', 'Auth\LoginController@index')->name('login');
+Route::post('login', 'Auth\LoginController@login');
 
 Auth::routes();
 
-Route::resource('productClass','ProductClassController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-Route::resource('product','ProductController');
-Route::resource('user','UserController');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', function () {
+        return view('index');
+    });
+
+    Route::resource('productClass', 'ProductClassController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('product', 'ProductController');
+    Route::resource('user', 'UserController');
+    Route::resource('product', 'ProductController');
+});
