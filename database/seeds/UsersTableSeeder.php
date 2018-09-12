@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Product;
+use App\Models\ProductClass;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,6 +18,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         app()['cache']->forget('spatie.permission.cache');
+
+        $product_class = ProductClass::get();
 
         // create permissions
         //管理者
@@ -57,6 +61,15 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('123456'),
             ]);
             $admin_create->assignRole($role_admin);
+            for($i=0; $i<5; $i++){
+                Product::create([
+                    'user_id' => $admin_create->id,
+                    'productclass_id' => $product_class[rand(0, 8)]->id,
+                    'name' => $admin_create->name . '商品' . $i,
+                    'price' => 100,
+                    'volume' => 10,
+                ]);
+            }
         }
 
         for($i=1;$i<11;$i++){
@@ -66,6 +79,15 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('123456'),
             ]);
             $store_create->assignRole($role_store);
+            for($a=0; $a<5; $a++){
+                Product::create([
+                    'user_id' => $store_create->id,
+                    'productclass_id' => $product_class[rand(0, 8)]->id,
+                    'name' => $store_create->name . '商品' . $a,
+                    'price' => 100,
+                    'volume' => 10,
+                ]);
+            }
         }
 
         for($i=1;$i<21;$i++){

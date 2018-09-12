@@ -18,18 +18,20 @@
               <thead>
                 <tr>
                   <th>商品名稱</th>
+                  <th width="20%">類型</th>
                   <th width="20%">價格</th>
                   <th width="20%">存貨</th>
-                  <th width="20%">操作</th>
+                  <th width="20%">詳細資料</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($product as $p)
                   <tr>
                     <td>{{ $p->name }}</td>
+                    <td>{{ $p->product_classes['name'] }}</td>
                     <td>{{ $p->price }}</td>
                     <td>{{ $p->volume }}</td>
-                    <td><a href="{{ route('product.edit', $p->id) }}" class="btn text-white btn-primary" role="button" aria-pressed="true">修改商品內容</a></td>
+                    <td><a href="{{ route('consumer.show', $p->id) }}" class="btn text-white btn-primary" role="button" aria-pressed="true">商品內容</a></td>
                   </tr>
                 @endforeach
               </tbody>

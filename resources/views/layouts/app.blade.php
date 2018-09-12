@@ -21,10 +21,10 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="basicDropMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="adminDropMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           管理者
         </a>
-        <div class="dropdown-menu" aria-labelledby="basicDropMenu">
+        <div class="dropdown-menu" aria-labelledby="adminDropMenu">
           <a class="dropdown-item" href="{{ route('productClass.index') }}">商品類型</a>
           <a class="dropdown-item" href="{{ route('user.index') }}">使用者管理</a>
         </div>
@@ -32,20 +32,21 @@
 
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="basicDropMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="storeDropMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           店家
         </a>
-        <div class="dropdown-menu" aria-labelledby="basicDropMenu">
+        <div class="dropdown-menu" aria-labelledby="storeDropMenu">
           <a class="dropdown-item" href="{{ route('product.index') }}">商品</a>
           <a class="dropdown-item" href="">出貨單</a>
         </div>
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="scheduleDropMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="consumerDropMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           消費者
         </a>
-        <div class="dropdown-menu" aria-labelledby="scheduleDropMenu">
+        <div class="dropdown-menu" aria-labelledby="consumerDropMenu">
+          <a class="dropdown-item" href="{{ route('consumer.index') }}">商品</a>
         </div>
       </li>
 
