@@ -17,6 +17,8 @@ class CreateCartsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('product_id');
+            $table->integer('price');
+            $table->integer('volume');
             $table->timestamps();
         });
     }

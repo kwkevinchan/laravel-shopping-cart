@@ -11,7 +11,6 @@
             <h5 class="font-weight-bold" style="margin-top:5px">
               商品清單
             </h5>
-            <a href="{{ route('product.create') }}" class="btn ml-auto text-white btn-success font-weight-bold" role="button" aria-pressed="true">新增商品</a>
           </div>
           <div class="card-body">
             <table class="table">
@@ -30,7 +29,11 @@
                     <td>{{ $p->name }}</td>
                     <td>{{ $p->product_classes['name'] }}</td>
                     <td>{{ $p->price }}</td>
-                    <td>{{ $p->volume }}</td>
+                    @if($p->volume)
+                      <td>{{ $p->volume }}</td>
+                    @else
+                      <td class="text-danger">商品售完!!</td>
+                    @endif
                     <td><a href="{{ route('consumer.show', $p->id) }}" class="btn text-white btn-primary" role="button" aria-pressed="true">商品內容</a></td>
                   </tr>
                 @endforeach

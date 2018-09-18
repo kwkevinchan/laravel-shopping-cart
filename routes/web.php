@@ -26,5 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('product', 'ProductController');
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
-    Route::resource('consumer', 'ConsumerController');
+    Route::get('consumer/cart', 'ConsumerController@cart')->name('consumer.cart');
+    Route::post('consumer/create', 'ConsumerController@create')->name('consumer.create');
+    Route::get('consumer/remove/{id}', 'ConsumerController@remove')->name('consumer.remove');
+    Route::resource('consumer', 'ConsumerController', ['only' => ['index', 'show']]);
 });

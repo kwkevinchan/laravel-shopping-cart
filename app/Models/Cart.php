@@ -11,4 +11,21 @@ class Cart extends Model
 
     public $incrementing = false;
 
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'price',
+        'volume'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
 }

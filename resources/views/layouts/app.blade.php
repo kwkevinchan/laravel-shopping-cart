@@ -47,6 +47,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="consumerDropMenu">
           <a class="dropdown-item" href="{{ route('consumer.index') }}">商品</a>
+          <a class="dropdown-item" href="{{ route('consumer.cart') }}">我的購物車</a>
         </div>
       </li>
 

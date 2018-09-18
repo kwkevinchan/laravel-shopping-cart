@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
+use App\User;
 
 class Product extends Model
 {
@@ -22,11 +23,17 @@ class Product extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     public function product_classes()
     {
         return $this->belongsTo(ProductClass::class, 'productclass_id', 'id');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
 }
