@@ -15,7 +15,13 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">商品類型:{{ $product->product_classes->name }}</li>
+              <li class="list-group-item">商品類型:
+                @foreach($product->productclass_id as $productclass_id)
+                  @if(isset($product_class[$productclass_id]))
+                    {{ $product_class[$productclass_id]->name }}
+                  @endif
+                @endforeach
+              </li>
               <li class="list-group-item">價格:{{ $product->price }}</li>
 
               @if($product->volume != 0)

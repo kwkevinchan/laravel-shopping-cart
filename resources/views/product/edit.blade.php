@@ -6,7 +6,21 @@
       <div class="col-8">
         @include('components.statusAlert')
         <div class="card">
-          <h5 class="card-header bg-primary text-white">修改商品</h5>
+          <div class="card-header bg-primary text-white d-flex">
+            <h5 class="font-weight-bold flex-grow-1 " style="margin-top:5px">
+              修改商品
+            </h5>
+            <button type="button" class="btn ml-auto btn-danger font-weight-bold" data-toggle="modal" data-target="#destroyModal">
+                <span class="text-white">
+                  刪除此商品
+                </span>
+            </button>
+              @include('components.destroyModal',[
+                'title' => '刪除此商品',
+                'message' => '商品:'. $product->name,
+                'target' => "/product/". $product->id,
+              ])
+          </div>
           <div class="card-body">
             <form method="POST" action="{{ route('product.update', $product->id) }}">
               <input name="_method" type="hidden" value="PATCH">

@@ -29,9 +29,12 @@ class ConsumerController extends Controller
 
     public function show($id)
     {
-        $product = Product::where('id', $id)->with(['product_classes', 'user'])->first();
+        $product = Product::where('id', $id)->first();
+        $product->productclass_id = explode('<|>', $product->productclass_id);
+        $product_class = ProductClass::get()->keyBy('id');
         return view('consumer.show', [
-            'product' => $product
+            'product' => $product,
+            'product_class' => $product_class
         ]);
     }
 
@@ -71,12 +74,19 @@ class ConsumerController extends Controller
     {
         $cart = Cart::with('product')->where('id', $id)->first();
         if($cart){
-            Cart::where('id', $id)->delete();
-            $volume = Product::where('id', $cart->product_id)->first(['volume']);
-            Product::where('id', $cart->product_id)->update(['volume' => $volume->volume + $cart->volume]);
-            session()->flash('status', 'success');
-            session()->flash('message', '商品'. $cart->product->name . ',' . $cart->volume .'個已成功移除!');
-            return redirect('/consumer/cart');
+            if($cart->product === null){
+                Cart::where('id', $id)->delete();
+                session()->flash('status', 'success');
+                session()->flash('message', '下架商品已成功移除!');
+                return redirect('/consumer/cart');
+            } else {
+                Cart::where('id', $id)->delete();
+                $volume = Product::where('id', $cart->product_id)->first(['volume']);
+                Product::where('id', $cart->product_id)->update(['volume' => $volume->volume + $cart->volume]);
+                session()->flash('status', 'success');
+                session()->flash('message', '商品'. $cart->product->name . ',' . $cart->volume .'個已成功移除!');
+                return redirect('/consumer/cart');
+            }
         } else {
             session()->flash('status', 'danger');
             session()->flash('message', '您所選取的商品不存在!');

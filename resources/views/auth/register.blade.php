@@ -9,7 +9,7 @@
                 <div class="card-header bg-primary text-white">註冊</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="/userStore">
                         {{ csrf_field() }}
 
                         <div class="form-group">

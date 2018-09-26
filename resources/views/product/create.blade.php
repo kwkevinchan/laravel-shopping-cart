@@ -39,7 +39,7 @@
 
               <div class="form-group">
                 <label for="price">商品定價</label>
-                <input id="price" type="number" name="price" class="form-control col-2">
+                <input id="price" type="number" name="price" class="form-control col-2" required>
               </div>
 
               <div class="form-group">

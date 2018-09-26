@@ -58,6 +58,32 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function register(){
+        return view('auth.register');
+    }
+
+    public function store(Request $request){
+        if(User::where('name', $request->name)->first()){
+            session()->flash('status', 'danger');
+            session()->flash('message', '您的姓名已被使用!!');
+            return redirect('register');
+        } elseif($request->password != $request->password_confirmed) {
+            session()->flash('status', 'danger');
+            session()->flash('message', '密碼確認錯誤，請輸入兩次相同的密碼!!');
+            return redirect('register');
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+            Auth::login($user);
+            session()->flash('status', 'success');
+            session()->flash('message', '註冊成功<br>歡迎:'. $user->name);
+            return redirect('/');
+        }
+    }
+
     use AuthenticatesUsers;
 
 }

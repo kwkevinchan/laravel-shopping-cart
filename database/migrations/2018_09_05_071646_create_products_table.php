@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->longText('detail')->nullable();
             $table->integer('price');
-            $table->integer('volume');
+            $table->integer('volume')->nullable();
             $table->timestamps();
         });
     }

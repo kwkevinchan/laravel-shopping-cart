@@ -31,8 +31,8 @@
               </div>
 
               <div class="form-group">
-                <label for="detail">類別名稱</label>
-                <input id="detail" type="text" name="detail" class="form-control" required value="{{ $product_class->detail }}">
+                <label for="detail">詳細說明</label>
+                <input id="detail" type="text" name="detail" class="form-control" value="{{ $product_class->detail }}">
               </div>
 
               <div class="form-group text-right">

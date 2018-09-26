@@ -14,6 +14,8 @@
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('login', 'Auth\LoginController@index')->name('login');
 Route::post('login', 'Auth\LoginController@login');
+Route::get('register', 'Auth\LoginController@register')->name('register');
+Route::post('userStore', 'Auth\LoginController@store')->name('userStore');
 
 Auth::routes();
 
@@ -26,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('product', 'ProductController');
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
+    Route::resource('profile', 'Auth\ProfileController');
+
     Route::get('consumer/cart', 'ConsumerController@cart')->name('consumer.cart');
     Route::post('consumer/create', 'ConsumerController@create')->name('consumer.create');
     Route::get('consumer/remove/{id}', 'ConsumerController@remove')->name('consumer.remove');

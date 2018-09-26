@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Product;
 use Hash;
 
 
@@ -119,16 +120,17 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::where('id', $id)->with('roles')->get();
+        $user = User::where('id', $id)->with('roles')->first();
         $name = $user->name;
         if($user->roles->isNotEmpty()){
             $user->removeRole($user->roles[0]->name);
         }
         $user->delete();
+        Product::where('user_id', $id)->delete();
 
-        return dd($user);
+        // return dd($user);
         session()->flash('status', 'success');
-        session()->flash('message', '已刪除使用者:'. $name .' ,與其權限！');
+        session()->flash('message', '已刪除使用者:'. $name .'與其權限、相關商品！');
         return redirect('/user');
     }
 

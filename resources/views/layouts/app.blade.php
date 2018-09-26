@@ -70,7 +70,7 @@
           <span class="caret">歡迎，{{ Auth::user()->name }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="">個人資料修改</a>
+          <a class="dropdown-item" href="/profile/index)\">個人資料修改</a>
           <a class="dropdown-item" href="{{ route('logout') }}">登出</a>
         </div>
       </li>

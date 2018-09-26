@@ -68,25 +68,27 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $company = Company::where('id', '=', $id)->first();
-        if($request->name != $company->name){
-            if(Company::where('name', '=', $request->name)->get()->toArray() != []){
-                //重複名稱
-                session()->flash('status', 'danger');
-                session()->flash('message', '委託單位:'. $request->name .' 已存在！');
-                return redirect('/company/' . $id . '/edit');
-            } else {
-                Company::where('id', '=', $id)->update(['name' => $request->name]);
-                session()->flash('status', 'success');
-                session()->flash('message', '已更新委託單位:'. $request->name .' ！');
-                return redirect('/company');
-            }
-        } else {
-            //同名但更新，為了刷新更新時間
-            Company::where('id', '=', $id)->update(['name' => $request->name]);
-            session()->flash('status', 'success');
-            session()->flash('message', '已更新委託單位:'. $request->name .' ！');
-            return redirect('/company');
-        }
+        // return dd($request->request);
+        Product::where('id', '=', $id)->update([
+            'name' => $request->name,
+            'detail' => $request->detail,
+            'productclass_id' => implode('<|>', $request->product_calss),
+            'price' => $request->price,
+            'volume' => $request->volume,
+        ]);
+        session()->flash('status', 'success');
+        session()->flash('message', '已更新商品:'. $request->name .'！<br>現有數量:'. $request->volume);
+        return redirect('/product/' . $id . '/edit');
     }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        session()->flash('status', 'success');
+        session()->flash('message', '已刪除商品:'. $product->name);
+        return redirect('/product');
+    }
+
 }

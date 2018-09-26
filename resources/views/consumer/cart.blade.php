@@ -28,14 +28,21 @@
               <tbody>
                 @foreach($cart as $p)
                   <tr>
-                    <td>
-                      <a href="{{ route('consumer.show', $p->product->id) }}" class="" aria-pressed="true">{{ $p->product->name }}</a>
-                    </td>
-                    <td>{{ $p->price }}</td>
-                    <td>{{ $p->volume }}</td>
-                    <td>
-                      <a href="{{ route('consumer.remove', $p->id) }}" class="btn text-white btn-primary" role="button" aria-pressed="true">移除商品</a>
-                    </td>
+                    @if($p->product === null)
+                      <td colspan="3">對不起，您所選擇的商品已下架</td>
+                      <td>
+                        <a href="{{ route('consumer.remove', $p->id) }}" class="btn text-white btn-primary" role="button" aria-pressed="true">移除商品</a>
+                      </td>
+                    @else
+                      <td>
+                        <a href="{{ route('consumer.show', $p->product->id) }}" class="" aria-pressed="true">{{ $p->product->name }}</a>
+                      </td>
+                      <td>{{ $p->price }}</td>
+                      <td>{{ $p->volume }}</td>
+                      <td>
+                        <a href="{{ route('consumer.remove', $p->id) }}" class="btn text-white btn-primary" role="button" aria-pressed="true">移除商品</a>
+                      </td>
+                    @endif
                   </tr>
                 @endforeach
               </tbody>
